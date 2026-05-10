@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  ChevronRight, ChevronLeft, CheckCircle2, Home, Loader2
+  ChevronRight, ChevronLeft, CheckCircle2, Loader2
 } from 'lucide-react';
 import { FormData } from './types';
 import AdminLogin from './admin/AdminLogin';
