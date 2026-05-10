@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  LogOut, Download, Search, X, User, Briefcase, 
+import {
+  LogOut, Download, Search, X, User, Briefcase,
   CheckCircle2, Calendar, Loader2
 } from 'lucide-react';
 import { Partner } from '../types';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://clooyzi-freelancer-network-backend.vercel.app/api';
 const STATUSES = ['Interested', 'Not Interested', 'Rejected', 'Training Needed', 'Training Start', 'Training Done', 'Company Setup Phase', 'Client Bring Phase'];
 
 const getStatusColor = (status: string) => {
@@ -114,7 +114,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ token, onLogout }) => {
         <div className="flex sm:flex-row flex-col justify-between items-center gap-4 mb-6">
           <div className="relative w-full max-w-md">
             <Search className="top-1/2 left-3 absolute text-gray-500 -translate-y-1/2" size={18} />
-            <input 
+            <input
               type="text" placeholder="Search partners..." value={search} onChange={e => setSearch(e.target.value)}
               className="bg-gray-900 py-2.5 pr-4 pl-10 border border-gray-800 focus:border-brand-gold rounded-xl w-full text-white focus:outline-none focus:ring-1 focus:ring-brand-gold transition"
             />
@@ -139,7 +139,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ token, onLogout }) => {
               <tbody className="divide-y divide-gray-800">
                 <AnimatePresence>
                   {filtered.map(p => (
-                    <motion.tr 
+                    <motion.tr
                       key={p._id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                       onClick={() => setSelectedPartner(p)}
                       className="hover:bg-gray-800/50 cursor-pointer transition-colors group"
@@ -186,8 +186,8 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ token, onLogout }) => {
                   <div className="grid grid-cols-1 gap-4">
                     <div>
                       <label className="block mb-2 text-gray-400 text-sm">Status</label>
-                      <select 
-                        value={selectedPartner.adminStatus} 
+                      <select
+                        value={selectedPartner.adminStatus}
                         onChange={(e) => updatePartner(selectedPartner._id, { adminStatus: e.target.value })}
                         className="bg-gray-800 px-4 py-2 border border-gray-700 focus:border-brand-gold rounded-lg w-full text-white focus:outline-none focus:ring-1 focus:ring-brand-gold"
                       >
@@ -196,9 +196,9 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ token, onLogout }) => {
                     </div>
                     <div>
                       <label className="block mb-2 text-gray-400 text-sm">Internal Comment</label>
-                      <textarea 
+                      <textarea
                         value={selectedPartner.adminComment || ''}
-                        onChange={(e) => setSelectedPartner({...selectedPartner, adminComment: e.target.value})}
+                        onChange={(e) => setSelectedPartner({ ...selectedPartner, adminComment: e.target.value })}
                         onBlur={(e) => updatePartner(selectedPartner._id, { adminComment: e.target.value })}
                         placeholder="Add notes here (saves automatically on blur)..."
                         className="bg-gray-800 p-3 border border-gray-700 focus:border-brand-gold rounded-lg w-full h-24 text-white focus:outline-none focus:ring-1 focus:ring-brand-gold resize-none"

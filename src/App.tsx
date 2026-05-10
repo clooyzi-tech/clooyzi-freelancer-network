@@ -8,7 +8,7 @@ import AdminLogin from './admin/AdminLogin';
 import AdminDashboard from './admin/AdminDashboard';
 import logo from './public/logo.png';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://clooyzi-freelancer-network-backend.vercel.app/api';
 
 const initialFormData: FormData = {
   fullName: '', email: '', whatsapp: '', location: '', age: '',

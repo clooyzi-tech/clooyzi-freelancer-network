@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { LogOut, ChevronLeft, AlertCircle, Loader2 } from 'lucide-react';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://clooyzi-freelancer-network-backend.vercel.app/api';
 
 interface AdminLoginProps {
   onLogin: (token: string) => void;
@@ -50,7 +50,7 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin, onBack }) => {
           <h1 className="font-bold text-2xl text-white">Admin Portal</h1>
           <p className="mt-2 text-gray-400 text-sm">Sign in to manage partner applications</p>
         </div>
-        
+
         {error && (
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="flex items-center gap-2 bg-red-500/10 mb-6 p-3 border border-red-500/20 rounded-lg text-red-400 text-sm">
             <AlertCircle size={16} /> {error}
