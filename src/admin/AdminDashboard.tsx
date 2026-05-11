@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { Partner } from '../types';
 
-const API_URL = 'https://clooyzi-freelancer-network-backend.vercel.app/api';
+const API_URL = 'https://clooyzi-freelancer-network-backend.onrender.com/api';
 const STATUSES = ['Interested', 'Not Interested', 'Rejected', 'Training Needed', 'Training Start', 'Training Done', 'Company Setup Phase', 'Client Bring Phase'];
 
 const getStatusColor = (status: string) => {
@@ -116,10 +116,10 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ token, onLogout }) => {
             <Search className="top-1/2 left-3 absolute text-gray-500 -translate-y-1/2" size={18} />
             <input
               type="text" placeholder="Search partners..." value={search} onChange={e => setSearch(e.target.value)}
-              className="bg-gray-900 py-2.5 pr-4 pl-10 border border-gray-800 focus:border-brand-gold rounded-xl w-full text-white focus:outline-none focus:ring-1 focus:ring-brand-gold transition"
+              className="bg-gray-900 py-2.5 pr-4 pl-10 border border-gray-800 focus:border-brand-gold rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-gold w-full text-white transition"
             />
           </div>
-          <button onClick={handleExport} className="flex items-center gap-2 bg-gray-900 hover:bg-gray-800 px-4 py-2.5 border border-gray-800 rounded-xl text-sm text-white transition">
+          <button onClick={handleExport} className="flex items-center gap-2 bg-gray-900 hover:bg-gray-800 px-4 py-2.5 border border-gray-800 rounded-xl text-white text-sm transition">
             <Download size={16} /> Export CSV
           </button>
         </div>
@@ -127,7 +127,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ token, onLogout }) => {
         <div className="bg-gray-900 shadow-xl border border-gray-800 rounded-2xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-sm text-left">
-              <thead className="bg-gray-900/50 text-gray-400 uppercase text-xs">
+              <thead className="bg-gray-900/50 text-gray-400 text-xs uppercase">
                 <tr>
                   <th className="px-6 py-4 font-semibold">Partner Name</th>
                   <th className="px-6 py-4 font-semibold">Contact Info</th>
@@ -142,7 +142,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ token, onLogout }) => {
                     <motion.tr
                       key={p._id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                       onClick={() => setSelectedPartner(p)}
-                      className="hover:bg-gray-800/50 cursor-pointer transition-colors group"
+                      className="group hover:bg-gray-800/50 transition-colors cursor-pointer"
                     >
                       <td className="px-6 py-4">
                         <div className="font-medium text-white">{p.fullName}</div>
@@ -165,7 +165,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ token, onLogout }) => {
               </tbody>
             </table>
             {filtered.length === 0 && (
-              <div className="py-12 text-center text-gray-500">No partners found.</div>
+              <div className="py-12 text-gray-500 text-center">No partners found.</div>
             )}
           </div>
         </div>
@@ -175,21 +175,21 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ token, onLogout }) => {
         {selectedPartner && (
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedPartner(null)} className="z-50 fixed inset-0 bg-black/60 backdrop-blur-sm" />
-            <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ type: 'spring', bounce: 0, duration: 0.4 }} className="right-0 top-0 bottom-0 z-50 fixed bg-gray-900 shadow-2xl border-l border-gray-800 w-full max-w-2xl h-full overflow-y-auto">
+            <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ type: 'spring', bounce: 0, duration: 0.4 }} className="top-0 right-0 bottom-0 z-50 fixed bg-gray-900 shadow-2xl border-gray-800 border-l w-full max-w-2xl h-full overflow-y-auto">
               <div className="top-0 sticky flex justify-between items-center bg-gray-900/95 backdrop-blur px-6 py-4 border-gray-800 border-b">
                 <h2 className="font-bold text-white text-xl">Partner Details</h2>
                 <button onClick={() => setSelectedPartner(null)} className="p-2 text-gray-400 hover:text-white transition"><X size={20} /></button>
               </div>
-              <div className="p-6 space-y-8">
+              <div className="space-y-8 p-6">
                 <div className="space-y-4 bg-gray-950 p-5 border border-gray-800 rounded-xl">
                   <h3 className="flex items-center gap-2 font-semibold text-brand-gold text-sm uppercase tracking-wider"><CheckCircle2 size={16} /> Admin Management</h3>
-                  <div className="grid grid-cols-1 gap-4">
+                  <div className="gap-4 grid grid-cols-1">
                     <div>
                       <label className="block mb-2 text-gray-400 text-sm">Status</label>
                       <select
                         value={selectedPartner.adminStatus}
                         onChange={(e) => updatePartner(selectedPartner._id, { adminStatus: e.target.value })}
-                        className="bg-gray-800 px-4 py-2 border border-gray-700 focus:border-brand-gold rounded-lg w-full text-white focus:outline-none focus:ring-1 focus:ring-brand-gold"
+                        className="bg-gray-800 px-4 py-2 border border-gray-700 focus:border-brand-gold rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-gold w-full text-white"
                       >
                         {STATUSES.map(s => <option key={s} value={s}>{s}</option>)}
                       </select>
@@ -201,7 +201,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ token, onLogout }) => {
                         onChange={(e) => setSelectedPartner({ ...selectedPartner, adminComment: e.target.value })}
                         onBlur={(e) => updatePartner(selectedPartner._id, { adminComment: e.target.value })}
                         placeholder="Add notes here (saves automatically on blur)..."
-                        className="bg-gray-800 p-3 border border-gray-700 focus:border-brand-gold rounded-lg w-full h-24 text-white focus:outline-none focus:ring-1 focus:ring-brand-gold resize-none"
+                        className="bg-gray-800 p-3 border border-gray-700 focus:border-brand-gold rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-gold w-full h-24 text-white resize-none"
                       />
                     </div>
                   </div>
@@ -209,7 +209,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ token, onLogout }) => {
 
                 <div className="space-y-6">
                   <div className="space-y-4">
-                    <h3 className="flex items-center gap-2 font-semibold text-gray-400 text-sm uppercase tracking-wider border-gray-800 border-b pb-2"><User size={16} /> Personal Info</h3>
+                    <h3 className="flex items-center gap-2 pb-2 border-gray-800 border-b font-semibold text-gray-400 text-sm uppercase tracking-wider"><User size={16} /> Personal Info</h3>
                     <div className="gap-4 grid grid-cols-2 text-sm">
                       <div><span className="block text-gray-500">Full Name</span><span className="font-medium text-gray-200">{selectedPartner.fullName}</span></div>
                       <div><span className="block text-gray-500">Email</span><span className="font-medium text-gray-200">{selectedPartner.email}</span></div>
@@ -220,7 +220,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ token, onLogout }) => {
                   </div>
 
                   <div className="space-y-4">
-                    <h3 className="flex items-center gap-2 font-semibold text-gray-400 text-sm uppercase tracking-wider border-gray-800 border-b pb-2"><Briefcase size={16} /> Professional</h3>
+                    <h3 className="flex items-center gap-2 pb-2 border-gray-800 border-b font-semibold text-gray-400 text-sm uppercase tracking-wider"><Briefcase size={16} /> Professional</h3>
                     <div className="gap-4 grid grid-cols-2 text-sm">
                       <div><span className="block text-gray-500">Company</span><span className="font-medium text-gray-200">{selectedPartner.currentCompany}</span></div>
                       <div><span className="block text-gray-500">Role</span><span className="font-medium text-gray-200">{selectedPartner.currentRole}</span></div>
@@ -230,7 +230,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ token, onLogout }) => {
                   </div>
 
                   <div className="space-y-4">
-                    <h3 className="flex items-center gap-2 font-semibold text-gray-400 text-sm uppercase tracking-wider border-gray-800 border-b pb-2"><Search size={16} /> Business Overview</h3>
+                    <h3 className="flex items-center gap-2 pb-2 border-gray-800 border-b font-semibold text-gray-400 text-sm uppercase tracking-wider"><Search size={16} /> Business Overview</h3>
                     <div className="gap-4 grid grid-cols-2 text-sm">
                       <div><span className="block text-gray-500">Existing Clients</span><span className="font-medium text-gray-200">{selectedPartner.existingClients}</span></div>
                       <div><span className="block text-gray-500">Client Count</span><span className="font-medium text-gray-200">{selectedPartner.clientCount}</span></div>
@@ -240,7 +240,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ token, onLogout }) => {
                   </div>
 
                   <div className="space-y-4">
-                    <h3 className="flex items-center gap-2 font-semibold text-gray-400 text-sm uppercase tracking-wider border-gray-800 border-b pb-2"><Calendar size={16} /> Market & Goals</h3>
+                    <h3 className="flex items-center gap-2 pb-2 border-gray-800 border-b font-semibold text-gray-400 text-sm uppercase tracking-wider"><Calendar size={16} /> Market & Goals</h3>
                     <div className="gap-4 grid grid-cols-2 text-sm">
                       <div className="col-span-2"><span className="block text-gray-500">Client Problems</span><span className="font-medium text-gray-200">{selectedPartner.clientProblems}</span></div>
                       <div><span className="block text-gray-500">Lead Gen</span><span className="font-medium text-gray-200">{selectedPartner.leadGenMethod}</span></div>

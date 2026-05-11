@@ -8,7 +8,7 @@ import AdminLogin from './admin/AdminLogin';
 import AdminDashboard from './admin/AdminDashboard';
 import logo from './public/logo.png';
 
-const API_URL = 'https://clooyzi-freelancer-network-backend.vercel.app/api';
+const API_URL = 'https://clooyzi-freelancer-network-backend.onrender.com/api';
 
 const initialFormData: FormData = {
   fullName: '', email: '', whatsapp: '', location: '', age: '',
@@ -261,7 +261,7 @@ export default function App() {
         <div className="mx-auto px-4 sm:px-6 lg:px-8 py-4 max-w-6xl">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-3">
-              <img src={logo} alt="Clooyzi Logo" className="h-10 w-auto object-contain" />
+              <img src={logo} alt="Clooyzi Logo" className="w-auto h-10 object-contain" />
             </div>
             <div className="flex flex-col leading-tight">
               <h1 className="font-black text-gray-900 text-2xl tracking-tight">
